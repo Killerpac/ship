@@ -1,20 +1,36 @@
-import { StatusBar } from 'expo-status-bar';
+import React, { useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import CardList from './components/cardlist';
+import Header from './components/header';
+import SearchBar from './components/searchbar';
 
 export default function App() {
+
+  const [searchQuery, setSearchQuery] = React.useState('');
+  const [clicked, setClicked] = useState(false);
+
   return (
     <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
+      <Header/>
+      <SearchBar
+        searchPhrase={searchQuery}
+        setSearchPhrase={setSearchQuery}
+        clicked={clicked}
+        setClicked={setClicked}
+      />
+      <CardList />
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    marginTop: 50,
+    marginStart: 10,
+    marginEnd: 10,
+  },
+  searchbar: {
+    marginTop: 100,
+    marginBottom: 10,
   },
 });
